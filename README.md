@@ -77,7 +77,7 @@ The old timer stops and a new 5 second timer starts. The boost does not stack.
 A moving object almost never lands on the exact same number. So I check if the distance is very small instead.
 
 ## Links
-- Gameplay Video: 
+- Gameplay Video Drive Link: https://drive.google.com/file/d/1UcgxbR5VPVhgwZjH2MNSuearDF0QsVDu/view?usp=sharing  
 - Repo: https://github.com/MAbdullah-BSCS25132/CS464-A3-BSCS25132
 
 ## Made With

@@ -127,4 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfabee8170c6cd45a0474f1b2f9cf53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BouncePad
+  bounceSound: {fileID: 8300000, guid: 11b55849023cfee42857faec6febb2da, type: 3}
+  volume: 1
   bounce: 8

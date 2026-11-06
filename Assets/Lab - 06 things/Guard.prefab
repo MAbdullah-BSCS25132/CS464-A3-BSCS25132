@@ -173,3 +173,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hazard
   damage: 1
   knockback: 10
+  warningSound: {fileID: 8300000, guid: 5d299dcfcc084d74e916c6cb4c45fb09, type: 3}
+  volume: 1

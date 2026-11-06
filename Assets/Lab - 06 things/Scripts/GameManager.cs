@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     public int startLives = 3;
 
     int lives;
-    bool respawning = false;
     Health playerHealth;
     Rigidbody playerRb;
     Vector3 startPos;
