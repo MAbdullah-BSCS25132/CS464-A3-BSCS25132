@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -29,6 +29,15 @@ public class GameManager : MonoBehaviour
 
     int redCoinScore;          // the score at which red coin appears
     bool redCoinSpawned = false; // makes sure it spawns only once
+    public TextMeshProUGUI heartsText;
+    public TextMeshProUGUI livesText;
+    public int startLives = 3;
+
+    int lives;
+    bool respawning = false;
+    Health playerHealth;
+    Rigidbody playerRb;
+    Vector3 startPos;
     void Awake()
     {
         timeLeft = timeLimit;
@@ -36,6 +45,15 @@ public class GameManager : MonoBehaviour
         restartPanel.SetActive(false); // hide panel at start
         redCoinScore = Random.Range(1, 11); // gives a number from 1 to 10
         levelText.text = levelName;
+        lives = startLives;
+    }
+    void Start()
+    {
+        GameObject p = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = p.GetComponent<Health>();
+        playerRb = p.GetComponent<Rigidbody>();
+        startPos = p.transform.position; // we respawn here
+        livesText.text = "Lives: " + lives;
     }
     void Update()
     {
@@ -54,6 +72,9 @@ public class GameManager : MonoBehaviour
     public void CoinCollected(int score)
     {
         if (gameOver) return;
+        heartsText.text = "Hearts: " + Mathf.Max(playerHealth.current, 0);
+
+        if (Input.GetKeyDown(KeyCode.H)) playerHealth.TakeDamage(1); // TEST ONLY, delete later
 
         playerScore = score;
         Debug.Log("Score: " + score);
@@ -131,5 +152,28 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f; // un-pause the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void UpdateHearts()
+    {
+        heartsText.text = "Hearts: " + Mathf.Max(playerHealth.current, 0);
+        if (playerHealth.current <= 0 && !gameOver) LoseLife();
+    }
+    void LoseLife()
+    {
+        lives--;
+        livesText.text = "Lives: " + Mathf.Max(lives, 0);
+
+        if (lives <= 0)
+        {
+            EndGame("Game Over!");
+            return;
+        }
+
+        // respawn immediately
+        playerRb.linearVelocity = Vector3.zero;
+        playerRb.angularVelocity = Vector3.zero;
+        playerRb.transform.position = startPos;
+        playerHealth.ResetHealth(2f); // full hearts and 2 seconds of protection
+        heartsText.text = "Hearts: " + playerHealth.current;
     }
 }
