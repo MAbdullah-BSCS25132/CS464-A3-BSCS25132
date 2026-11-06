@@ -40,4 +40,9 @@ public class Health : MonoBehaviour
         current = maxHealth;
         invulnerableUntil = Time.time + protectSeconds; // a moment of protection
     }
+    public void Kill()
+    {
+        current = 0;
+        if (GameManager.instance != null) GameManager.instance.UpdateHearts();
+    }
 }

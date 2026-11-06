@@ -1,8 +1,10 @@
 using UnityEngine;
-
+using System.Collections;
 public class BallController : MonoBehaviour
 {
     public float speed = 10f;
+    float baseSpeed;
+    Coroutine boostRoutine;
     Rigidbody rb;
 
     public AudioClip coinSound;
@@ -10,8 +12,22 @@ public class BallController : MonoBehaviour
     AudioSource audioSource;
     void Start()
     {
+        baseSpeed = speed;
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+    }
+    public void BoostSpeed(float multiplier, float seconds)
+    {
+        if (boostRoutine != null) StopCoroutine(boostRoutine); // refresh rule
+        speed = baseSpeed * multiplier;
+        boostRoutine = StartCoroutine(BoostTimer(seconds));
+    }
+
+    IEnumerator BoostTimer(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        speed = baseSpeed;
+        boostRoutine = null;
     }
 
     void FixedUpdate()

@@ -10,7 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 4a1142b17f64bbc40871f76529421f77, type: 3}
       propertyPath: m_Name
-      value: Spike 1
+      value: Spike
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a1142b17f64bbc40871f76529421f77, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 4a1142b17f64bbc40871f76529421f77, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 4a1142b17f64bbc40871f76529421f77, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a1142b17f64bbc40871f76529421f77, type: 3}
       propertyPath: m_RootOrder
